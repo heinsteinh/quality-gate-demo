@@ -55,7 +55,7 @@ stages:
   dependsOn: dev
   jobs:
   - deployment: configDr
-    environment: dummyDR
+    environment: dummyDr
     strategy:
      runOnce:
        deploy:
@@ -64,7 +64,7 @@ stages:
            - script: echo 'config dr script 1'
 
   - deployment: deployDr
-    environment: dummyDrr
+    environment: dummyDr
     dependsOn: configDr
     strategy:
      runOnce:
