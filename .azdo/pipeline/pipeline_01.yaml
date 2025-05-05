@@ -1,23 +1,71 @@
 
-trigger:
-- main
-- feature/*
+trigger: none
 
 name: $(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:r)
-
-
-
-steps:
-  - script: echo '$(Build.BuildNumber)'
 
 pool:
   vmImage: 'ubuntu-latest'
 
+stages:
+- stage: dev
   jobs:
-  - job: A
-    steps:
-    - bash: echo "A"
+  - deployment: configDev
+    environment: dummyDev
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo 'config dev script 1'
+           - script: echo 'config dev script 1'
 
-  - job: B
-    steps:
-    - bash: echo "B"
+  - deployment: deployDev
+    environment: dummyDev
+    dependsOn: configDev
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo 'config dev script 1'
+           - script: echo 'config dev script 1'
+
+- stage: prod
+  jobs:
+  - deployment: configProd
+    environment: dummyProd
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo 'config prod script 1'
+           - script: echo 'config prod script 1'
+
+  - deployment: deployProd
+    environment: dummyProd
+    dependsOn: configProd
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo 'config prod script 1'
+           - script: echo 'config prod script 1'
+
+- stage: dr
+  jobs:
+  - deployment: configDr
+    environment: dummyDR
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo 'config dr script 1'
+           - script: echo 'config dr script 1'
+
+  - deployment: deployDr
+    environment: dummyDrr
+    dependsOn: configDr
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo 'config dr script 1'
+           - script: echo 'config dr script 1'
