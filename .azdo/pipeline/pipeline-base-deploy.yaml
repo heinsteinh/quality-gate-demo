@@ -2,3 +2,25 @@ parameters:
 - name: buildSteps
   type: stepList
   default: []
+
+stages:
+  - stage: deploy_to_test
+    pool:
+      vmImage: 'ubuntu-20.04'
+    jobs:
+    - job: pre_deploy
+      steps:
+      - script: echo 'pre deploy'
+    
+    - deployment: deploy
+      dependsOn: pre_deploy
+      environment: testEnv
+      strategy: 
+       runOnce:
+         deploy:
+           steps: ${{ parameters.buildSteps }}
+
+    - job: post_deploy
+      dependsOn: deploy
+      steps:
+      - script: echo 'post build'
