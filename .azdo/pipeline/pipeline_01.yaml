@@ -29,6 +29,7 @@ stages:
            - script: echo 'config dev script 1'
 
 - stage: prod
+  dependsOn: dev
   jobs:
   - deployment: configProd
     environment: dummyProd
@@ -50,6 +51,7 @@ stages:
            - script: echo 'config prod script 1'
 
 - stage: dr
+  dependsOn: dev
   jobs:
   - deployment: configDr
     environment: dummyDR
