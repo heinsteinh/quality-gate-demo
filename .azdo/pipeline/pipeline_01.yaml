@@ -1,0 +1,20 @@
+
+
+name: $(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:r)
+
+steps:
+  - script: echo '$(Build.BuildNumber)'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+
+
+jobs:
+- job: A
+  steps:
+  - bash: echo "A"
+
+- job: B
+  steps:
+  - bash: echo "B"
