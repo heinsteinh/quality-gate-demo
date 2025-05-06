@@ -1,0 +1,27 @@
+trigger: none
+
+
+stages:
+- stage: deploy_to_test
+  pool:
+   vmImage: 'ubuntu-20.04'
+  jobs:
+  - job: pred_deploy
+    steps:
+    - script: echo pre_deploy
+    cancelTimeoutInMinutes: 
+
+  - deployment: deploy
+    dependsOn: pre_deploy
+    environment: testEnv
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+           - script: echo child pipeline 1
+           - script: echo child pipeline 2
+
+  - job: post_deploy
+    dependsOn: deploy
+    steps:
+        - script: echo post build
