@@ -1,8 +1,8 @@
 ---
 parameters:
-- name: buildSteps
-  type: stepList
-  default: []
+- name: buildSteps # the name of the parameter is buildSteps
+  type: stepList # data type is StepList
+  default: [] # default value of buildSteps
 
 stages:
 - stage: deploy_to_test
@@ -19,7 +19,8 @@ stages:
     strategy:
       runOnce:
         deploy:
-          steps: ${{ parameters.buildSteps }}
+          steps:
+          - ${{ parameters.buildSteps }}
 
   - job: post_deploy
     dependsOn: deploy
