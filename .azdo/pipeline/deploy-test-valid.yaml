@@ -4,4 +4,5 @@ extends:
   template: pipeline-base-deploy.yaml
   parameters:
     buildSteps:
-    - script: echo "This runs in the default shell on any machine"
+    - script: |
+        echo "This runs in the default shell on any machine"
