@@ -5,6 +5,6 @@ extends:
   parameters:
     buildSteps:
 
-      - scripts: echo child pipeline 1
-                
-      - scripts: echo child pipeline 2
+      - script: echo This runs in the default shell on any machine
+      - bash: |
+          echo This multiline script always runs in Bash. echo Even on Windows machines!
