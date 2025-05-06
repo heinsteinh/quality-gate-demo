@@ -1,10 +1,10 @@
 trigger: none
 
 extends:
-  template: pipeline-base-deploy.qml
+  template: pipeline-base-deploy.yaml
   parameters:
-      buildSteps:
-        
-        - scripts: echo 'child pipeline 1'
+    buildSteps:
+
+      - scripts: echo child pipeline 1
                 
-        - scripts: echo 'child pipeline 2'
+      - scripts: echo child pipeline 2
