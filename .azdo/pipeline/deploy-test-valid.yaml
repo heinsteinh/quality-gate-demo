@@ -5,4 +5,6 @@ extends:
   parameters:
     buildSteps:
     - script: |
-        echo "This runs in the default shell on any machine"
+        echo "This runs in the default shell on any machine script 1"
+    - script: |
+        echo "This runs in the default shell on any machine script 2"
