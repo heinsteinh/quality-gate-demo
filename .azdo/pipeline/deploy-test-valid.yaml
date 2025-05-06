@@ -3,8 +3,7 @@ trigger: none
 extends:
   template: pipeline-base-deploy.yaml
   parameters:
-    buildSteps:
-
+    buildSteps:    
       - script: echo This runs in the default shell on any machine
       - bash: |
           echo This multiline script always runs in Bash. echo Even on Windows machines!
